@@ -10,15 +10,14 @@
     $.fn.textareaAutoRedimensiona = function() {
         return this.each(function() {
             var cssQueAlteraTamanho = ['font-size','font-style', 'font-weight', 'font-family','line-height', 'text-transform', 'letter-spacing'];
-            $(this).on("keypress keydown" , function(){
-                var i;
+			var css = {};
+			//pega o css que pode alterar as dimensoes do texto
+			for(var i =0 ; i <  cssQueAlteraTamanho.length; i++){
+				css[cssQueAlteraTamanho[i]] = $(this).css(cssQueAlteraTamanho[i]);
+			}           
+		   $(this).on("keypress keydown" , function(){
                 var texto = $(this).val();
                 var largura = $(this).width();
-                var css = {};
-                //pega o css que pode alterar as dimensoes do texto
-                for(i =0 ; i <  cssQueAlteraTamanho.length; i++){
-                    css[cssQueAlteraTamanho[i]] = $(this).css(cssQueAlteraTamanho[i]);
-                }
                 var $temp = $("<div />" , {
                     "css" :$.extend(css , {
                         "position" : "absolute" ,
